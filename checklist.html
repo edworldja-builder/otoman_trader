@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pre-Trade Checklist — Trader Otodidak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --accent: #c8f25a;
+    --gray-1: #1a1a1a;
+    --gray-2: #272727;
+    --gray-3: #888;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html, body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 680px;
+    background: var(--gray-1);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #2a2a2a;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--black);
+    padding: 32px 40px 28px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .header-left {}
+
+  .brand {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .brand::before {
+    content: '';
+    width: 16px;
+    height: 1.5px;
+    background: var(--accent);
+    display: block;
+  }
+
+  .header h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    color: var(--white);
+  }
+
+  .header h1 span { color: var(--accent); }
+
+  .header-sub {
+    font-size: 13px;
+    color: var(--gray-3);
+    font-weight: 300;
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .header-rule {
+    flex-shrink: 0;
+    text-align: right;
+  }
+
+  .rule-box {
+    background: var(--accent);
+    color: var(--black);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 8px;
+    line-height: 1.4;
+    max-width: 140px;
+    text-align: center;
+  }
+
+  /* CHECKLIST */
+  .items {
+    padding: 24px 40px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .item {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 0 14px;
+    padding: 14px 16px;
+    background: var(--black);
+    border-radius: 10px;
+    border: 1px solid #222;
+    align-items: start;
+    transition: border-color 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background 0.15s;
+  }
+
+  .item:hover { border-color: #333; }
+  .item:hover::before { background: var(--accent); }
+
+  .item.danger::before { background: #ff4d4d33; }
+  .item.danger { border-color: #ff4d4d22; }
+
+  .num {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--accent);
+    line-height: 1;
+    padding-top: 2px;
+  }
+
+  .item.danger .num { color: #ff6b6b; }
+
+  .content {}
+
+  .label {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 3px;
+    line-height: 1.2;
+  }
+
+  .desc {
+    font-size: 12.5px;
+    color: var(--gray-3);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .desc strong {
+    color: #ccc;
+    font-weight: 500;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  .tag.stop {
+    background: #ff4d4d22;
+    color: #ff6b6b;
+    border: 1px solid #ff4d4d33;
+  }
+
+  .tag.skip {
+    background: #ffa50022;
+    color: #ffa500;
+    border: 1px solid #ffa50033;
+  }
+
+  /* DIVIDER */
+  .divider {
+    margin: 0 40px;
+    height: 1px;
+    background: #222;
+  }
+
+  /* BISIKAN SETAN CALLOUT */
+  .callout {
+    margin: 0 40px 6px;
+    padding: 14px 18px;
+    background: #1a0f0f;
+    border: 1px solid #ff4d4d22;
+    border-left: 3px solid #ff4d4d;
+    border-radius: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .callout-icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .callout-text {}
+
+  .callout-text strong {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ff6b6b;
+    margin-bottom: 3px;
+  }
+
+  .callout-text p {
+    font-size: 12px;
+    color: #aaa;
+    font-weight: 300;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* FOOTER RULE */
+  .footer-rule {
+    margin: 16px 40px 0;
+    padding: 16px 20px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .footer-rule p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--black);
+    line-height: 1.4;
+  }
+
+  .footer-rule span {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    white-space: nowrap;
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 16px 40px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .footer-brand {
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-3);
+  }
+
+  .footer-brand span { color: var(--accent); }
+
+  .footer-author {
+    font-size: 11px;
+    color: #444;
+    font-weight: 300;
+  }
+
+  /* PRINT */
+  @media print {
+    html, body { background: white; padding: 0; }
+    .page { border: none; border-radius: 0; max-width: 100%; }
+    .item { break-inside: avoid; }
+  }
+
+  /* MOBILE */
+  @media (max-width: 520px) {
+    .header { padding: 24px 20px 20px; flex-direction: column; }
+    .header-rule { text-align: left; }
+    .rule-box { max-width: none; }
+    .items { padding: 16px 20px 20px; }
+    .divider { margin: 0 20px; }
+    .callout { margin: 0 20px 6px; }
+    .footer-rule { margin: 12px 20px 0; }
+    .footer { padding: 12px 20px 20px; }
+    .header h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <div class="header">
+    <div class="header-left">
+      <div class="brand">Trader Otodidak</div>
+      <h1>Pre-Trade<br><span>Checklist</span></h1>
+      <p class="header-sub">Jawab ini sebelum klik BUY.<br>Sistem yang ngomong — bukan feeling.</p>
+    </div>
+    <div class="header-rule">
+      <div class="rule-box">Semua YES<br>→ baru klik Buy</div>
+    </div>
+  </div>
+
+  <div class="items">
+
+    <div class="item">
+      <span class="num">01</span>
+      <div class="content">
+        <p class="label">Ada katalis?</p>
+        <p class="desc">Berita positif yang <strong>spesifik</strong> — bukan rumor, bukan feeling. Cek pakai AI: <strong>"summary [TICKER] news today"</strong></p>
+      </div>
+    </div>
+
+    <div class="item danger">
+      <span class="num">02</span>
+      <div class="content">
+        <p class="label">News-nya net positif? <span class="tag stop">Stop kalau tidak</span></p>
+        <p class="desc">Kalau lebih banyak negatif → <strong>jangan lanjut.</strong> Ga ada sistem yang bisa lawan fundamental negatif.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-icon">👿</div>
+      <div class="callout-text">
+        <strong>Anti-Bisikan Setan Filter</strong>
+        <p>"Gw udah tau newsnya negatif tapi tetep masuk karena ada bisikan: <em>'msh bisa naik lagi ini mah.'</em> — Itu FOMO versi gw. Pertanyaan 02 ini yang matiin bisikan itu."</p>
+      </div>
+    </div>
+
+    <div class="item danger">
+      <span class="num">03</span>
+      <div class="content">
+        <p class="label">Udah terbang belum? <span class="tag skip">Skip kalau iya</span></p>
+        <p class="desc">Naik <strong>&gt;8–10% dalam 3 hari</strong> terakhir → SKIP. <em>"Kalau udah terbang, jangan dikejer."</em></p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="num">04</span>
+      <div class="content">
+        <p class="label">Ada kompetitor signal?</p>
+        <p class="desc">Kompetitor langsungnya lagi ngapain? <strong>Naik duluan = bisa jadi giliran lo.</strong> Teknik yang jarang diajarin.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="num">05</span>
+      <div class="content">
+        <p class="label">Sizing berapa?</p>
+        <p class="desc">Tentukan <strong>SEBELUM masuk</strong> — bukan setelah emosi udah nyangkut. Full / Partial / Starter.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="num">06</span>
+      <div class="content">
+        <p class="label">Stop loss di mana?</p>
+        <p class="desc"><strong>Harga spesifik</strong> — bukan "kira-kira". Kalau ga bisa tentuin, jangan masuk dulu.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="num">07</span>
+      <div class="content">
+        <p class="label">Target exit pertama?</p>
+        <p class="desc">Minimal <strong>satu angka realistis</strong> sebelum masuk. Kalau ga ada target, lo ga punya rencana.</p>
+      </div>
+    </div>
+
+    <div class="item">
+      <span class="num">08</span>
+      <div class="content">
+        <p class="label">R:R masuk akal?</p>
+        <p class="desc">Potensi untung minimal <strong>2× potensi rugi.</strong> Di bawah 1:2 → pertimbangkan ulang.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-rule">
+    <p>Semua YES → baru klik Buy.<br>Ada 1 NO → tahan dulu.</p>
+    <span>by Ed. J Angsari</span>
+  </div>
+
+
+  <div style="margin: 0 40px 0; padding: 16px 20px; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+    <div>
+      <p style="font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-bottom: 4px;">Coming soon</p>
+      <p style="font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: #f5f2ed; line-height: 1.4;">Sistem Investasi Mandiri — Full Playbook</p>
+      <p style="font-size: 12px; color: #666; font-weight: 300; margin-top: 3px;">Screener system, trading plan, sizing framework, & trade journal — lengkap.</p>
+    </div>
+    <a href="https://otoman-trader.vercel.app" style="flex-shrink: 0; font-family: 'Syne', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #c8f25a; text-decoration: none; border: 1px solid #c8f25a33; padding: 8px 14px; border-radius: 8px; white-space: nowrap;">Notify Me →</a>
+  </div>
+
+  <div class="footer">
+    <span class="footer-brand">Trader <span>Otodidak</span></span>
+    <span class="footer-author">otoman-trader.vercel.app</span>
+  </div>
+
+</div>
+
+</body>
+</html>
