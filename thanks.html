@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Makasih! — Trader Otodidak</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --accent: #c8f25a;
+    --accent-dark: #9bc23a;
+    --gray-1: #1a1a1a;
+    --gray-2: #2a2a2a;
+    --gray-3: #888;
+    --gray-4: #555;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .wrap {
+    max-width: 520px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 48px 24px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .checkmark {
+    width: 64px;
+    height: 64px;
+    background: var(--accent);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+
+  .checkmark svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--black);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  .checkmark svg path {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: drawCheck 0.4s ease 0.3s both;
+  }
+
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes drawCheck {
+    to { stroke-dashoffset: 0; }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    animation: fadeUp 0.5s ease 0.2s both;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .desc {
+    font-size: 16px;
+    color: #aaa;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 36px;
+    animation: fadeUp 0.5s ease 0.3s both;
+  }
+
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--accent);
+    color: var(--black);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+    margin-bottom: 16px;
+    animation: fadeUp 0.5s ease 0.35s both;
+  }
+
+  .download-btn:hover { background: var(--accent-dark); }
+  .download-btn:active { transform: scale(0.99); }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 28px 0 24px;
+    animation: fadeUp 0.5s ease 0.4s both;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--gray-2);
+  }
+
+  .divider span {
+    font-size: 12px;
+    color: var(--gray-4);
+    font-weight: 300;
+    white-space: nowrap;
+  }
+
+  /* SHARE SECTION */
+  .share-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-3);
+    margin-bottom: 14px;
+    animation: fadeUp 0.5s ease 0.45s both;
+  }
+
+  .share-text {
+    background: var(--gray-1);
+    border: 1px solid var(--gray-2);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 14px;
+    color: #bbb;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 14px;
+    font-weight: 300;
+    animation: fadeUp 0.5s ease 0.5s both;
+  }
+
+  .share-text strong {
+    color: var(--white);
+    font-weight: 500;
+  }
+
+  .share-actions {
+    display: flex;
+    gap: 10px;
+    animation: fadeUp 0.5s ease 0.55s both;
+  }
+
+  .share-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 16px;
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--gray-2);
+    background: var(--gray-1);
+    color: var(--white);
+    transition: border-color 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+
+  .share-btn:hover {
+    background: var(--gray-2);
+    border-color: var(--gray-4);
+  }
+
+  .share-btn.wa {
+    border-color: #25d366;
+    color: #25d366;
+  }
+
+  .share-btn.wa:hover {
+    background: rgba(37, 211, 102, 0.08);
+  }
+
+  .copy-feedback {
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 10px;
+    height: 18px;
+    transition: opacity 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.5s ease 0.6s both;
+  }
+
+  .copy-feedback.show { opacity: 1; }
+
+  .footer-note {
+    margin-top: 40px;
+    font-size: 12px;
+    color: var(--gray-4);
+    animation: fadeUp 0.5s ease 0.65s both;
+  }
+
+  .footer-note a {
+    color: var(--gray-3);
+    text-decoration: none;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="checkmark">
+    <svg viewBox="0 0 24 24">
+      <path d="M5 12l5 5L19 7"/>
+    </svg>
+  </div>
+
+  <h1>Lo udah jadi<br><em>Otoman.</em></h1>
+
+  <p style="font-size:12px; color:#555; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:16px; font-weight:500;"><em style="font-style:normal; color:#888;">Oto</em>didak&nbsp;<em style="font-style:normal; color:#888;">Man</em>diri Trader</p>
+
+  <p class="desc">Checklist lo udah siap. Satu halaman, 8 pertanyaan — tempel di monitor atau save di HP. Buka setiap kali mau klik buy.</p>
+
+  <a href="PLACEHOLDER_CHECKLIST_URL" class="download-btn" download>
+    ↓ &nbsp;Download Pre-Trade Checklist
+  </a>
+
+  <div class="divider">
+    <span>punya temen yang sering FOMO juga?</span>
+  </div>
+
+  <p class="share-label">Kirimin ke mereka</p>
+
+  <div class="share-text">
+    <strong>Buat lo yang sering FOMO sebelum klik buy</strong> — gw baru dapet checklist gratis dari Trader Otodidak, isinya 8 pertanyaan yang harus dijawab sebelum masuk posisi. Lumayan praktis, gratis pula. Download di sini: <strong>link di bio gw</strong>
+  </div>
+
+  <div class="share-actions">
+    <a class="share-btn wa" id="waShare" href="#" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Share via WA
+    </a>
+    <button class="share-btn" id="copyBtn" onclick="copyLink()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+      Copy Link
+    </button>
+  </div>
+
+  <p class="copy-feedback" id="copyFeedback">✓ Link berhasil di-copy!</p>
+
+  <p class="footer-note">
+    © 2026 Trader Otodidak · <a href="index.html">← Kembali ke halaman utama</a>
+  </p>
+
+</div>
+
+<script>
+  const shareUrl = 'https://forms.gle/Fsbov58D6KasTEr46';
+  const shareMsg = encodeURIComponent('Buat lo yang sering FOMO sebelum klik buy — gw baru dapet checklist gratis dari Trader Otodidak, isinya 8 pertanyaan yang harus dijawab sebelum masuk posisi. Download di sini: ' + shareUrl);
+
+  document.getElementById('waShare').href = 'https://wa.me/?text=' + shareMsg;
+
+  function copyLink() {
+    navigator.clipboard.writeText(shareUrl).then(function() {
+      var feedback = document.getElementById('copyFeedback');
+      feedback.classList.add('show');
+      setTimeout(function() { feedback.classList.remove('show'); }, 2500);
+    });
+  }
+</script>
+
+</body>
+</html>

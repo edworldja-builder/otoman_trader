@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trader Otodidak — Pre-Trade Checklist Gratis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --accent: #c8f25a;
+    --accent-dark: #9bc23a;
+    --gray-1: #1a1a1a;
+    --gray-2: #2a2a2a;
+    --gray-3: #888;
+    --gray-4: #555;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  nav {
+    padding: 28px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 15px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--gray-2);
+    color: var(--gray-3);
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid var(--gray-2);
+  }
+
+  .hero { padding: 72px 0 0; }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 24px;
+  }
+
+  .tag::before {
+    content: '';
+    width: 20px;
+    height: 1.5px;
+    background: var(--accent);
+    display: block;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(36px, 8vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  h1 em { font-style: normal; color: var(--accent); }
+
+  .subtitle {
+    font-size: 17px;
+    color: #aaa;
+    font-weight: 300;
+    margin-top: 20px;
+    max-width: 480px;
+    line-height: 1.7;
+  }
+
+  .story {
+    margin: 56px 0 0;
+    padding: 32px;
+    background: var(--gray-1);
+    border-radius: 16px;
+    border-left: 3px solid var(--accent);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .story::after {
+    content: '"';
+    position: absolute;
+    right: 24px;
+    top: -8px;
+    font-family: var(--font-display);
+    font-size: 120px;
+    color: var(--gray-2);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .story p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #ccc;
+    position: relative;
+    z-index: 1;
+  }
+
+  .story p + p { margin-top: 12px; }
+  .story strong { color: var(--white); font-weight: 500; }
+
+  .story .author {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 13px;
+    color: var(--black);
+    flex-shrink: 0;
+  }
+
+  .author-info p:first-child { font-size: 13px; font-weight: 500; color: var(--white); }
+  .author-info p:last-child { font-size: 12px; color: var(--gray-3); }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-3);
+    margin-bottom: 20px;
+    margin-top: 56px;
+  }
+
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+    background: var(--gray-1);
+    border-radius: 12px;
+    border: 1px solid var(--gray-2);
+    transition: border-color 0.2s;
+  }
+
+  .check-item:hover { border-color: var(--gray-4); }
+
+  .check-num {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--accent);
+    min-width: 20px;
+    padding-top: 1px;
+  }
+
+  .check-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .check-text span { font-size: 13px; color: var(--gray-3); font-weight: 300; }
+
+  .form-wrap {
+    background: var(--gray-1);
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid var(--gray-2);
+    margin-bottom: 24px;
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+
+  .form-title em { font-style: normal; color: var(--accent); }
+
+  .form-desc {
+    font-size: 14px;
+    color: var(--gray-3);
+    font-weight: 300;
+    margin-bottom: 28px;
+  }
+
+  .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 18px;
+    background: var(--accent);
+    color: var(--black);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.03em;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .submit-btn:hover { background: var(--accent-dark); }
+  .submit-btn:active { transform: scale(0.99); }
+
+  .submit-btn .arrow { transition: transform 0.2s; }
+  .submit-btn:hover .arrow { transform: translateX(4px); }
+
+  .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-4);
+    margin-top: 14px;
+    font-weight: 300;
+  }
+
+  footer {
+    padding: 40px 0 48px;
+    border-top: 1px solid var(--gray-2);
+    margin-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  footer p { font-size: 12px; color: var(--gray-4); font-weight: 300; }
+  footer a { color: var(--gray-3); text-decoration: none; font-size: 12px; }
+  footer a:hover { color: var(--white); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero, .story, .checklist, .form-wrap { animation: fadeUp 0.6s ease both; }
+  .story { animation-delay: 0.1s; }
+  .checklist { animation-delay: 0.15s; }
+  .form-wrap { animation-delay: 0.2s; }
+
+  @media (max-width: 480px) {
+    .form-wrap { padding: 28px 20px; }
+    .story { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a href="#" class="logo">Trader <span>Otodidak</span></a>
+    <span class="badge">100% Gratis</span>
+  </nav>
+
+  <section class="hero">
+    <div class="tag">Pre-Trade Checklist</div>
+    <h1>Sebelum klik <em>Buy</em>,<br>jawab ini dulu.</h1>
+    <p class="subtitle">8 pertanyaan yang gw tanya ke diri sendiri setiap kali mau masuk posisi — hasil dari bertahun-tahun trading US stocks secara otodidak.</p>
+  </section>
+
+  <div class="story">
+    <p>Kesalahan terbesar gw bukan soal <strong>ga bisa baca chart</strong>. Kesalahan terbesar gw adalah waktu gw <strong>udah tau newsnya negatif</strong>, candlenya udah terbang tinggi — tapi tetep masuk karena ada bisikan: <em>"msh bisa naik lagi ini mah."</em></p>
+    <p>FOMO versi gw. Dan gw yakin lo pernah ngerasain hal yang sama.</p>
+    <p>Checklist ini gw bikin supaya <strong>sistem yang ngomong, bukan feeling.</strong></p>
+    <div class="author">
+      <div class="author-avatar">EJ</div>
+      <div class="author-info">
+        <p>Ed. J Angsari</p>
+        <p>Trader otodidak · US stocks · Pluang+</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-label">Yang lo dapet</p>
+  <div class="checklist">
+    <div class="check-item">
+      <span class="check-num">01</span>
+      <div class="check-text">
+        <strong>Cek katalis dulu, bukan chart dulu</strong>
+        <span>Pertanyaan untuk filter berita positif vs negatif — dalam 5 menit pakai AI</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <span class="check-num">02</span>
+      <div class="check-text">
+        <strong>Prinsip "udah terbang, skip"</strong>
+        <span>Cara tau apakah saham udah kelewatan atau masih ada ruang masuk</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <span class="check-num">03</span>
+      <div class="check-text">
+        <strong>Anti-FOMO filter</strong>
+        <span>Satu pertanyaan yang langsung matiin bisikan setan sebelum lo klik buy</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <span class="check-num">04</span>
+      <div class="check-text">
+        <strong>Competitor signal play</strong>
+        <span>Cara baca pergerakan kompetitor sebagai sinyal — teknik yang jarang diajarin</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <span class="check-num">05–08</span>
+      <div class="check-text">
+        <strong>4 pertanyaan sizing & exit</strong>
+        <span>Berapa masuk, stop loss di mana, kapan keluar — sebelum posisi dibuka</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-wrap" id="form">
+    <p class="form-title">Dapet checklist-nya<br><em>sekarang, gratis.</em></p>
+    <p class="form-desc">Isi nama + nomor WA lo. 2 field, 10 detik, selesai.</p>
+
+    <a href="https://forms.gle/Fsbov58D6KasTEr46" target="_blank" rel="noopener" class="submit-btn">
+      Ambil Checklist Gratis
+      <span class="arrow">→</span>
+    </a>
+
+    <p class="form-note">Data lo aman. Gw ga bakal spam — cuma update kalau ada konten baru yang worth it.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 Trader Otodidak · Ed. J Angsari</p>
+    <a href="https://instagram.com" target="_blank">@traderotodidak</a>
+  </footer>
+</div>
+
+</body>
+</html>
